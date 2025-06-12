@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Резиновая крошка от производителя - Креативы</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background-color: white;
+            margin: 20px auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        .logo {
+            height: 60px;
+        }
+        .main-green {
+            background: linear-gradient(135deg, #2B8B3E, #1F7A32);
+        }
+        .text-main-green {
+            color: #2B8B3E;
+        }
+        .creative-200x400 {
+            width: 200px;
+            height: 400px;
+            border: 2px solid #e0e0e0;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            margin: 0 auto;
+            position: relative;
+            background: white;
+        }
+        .rubber-crumb-img {
+            object-fit: cover;
+            width: 100%;
+        }
+        .price-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: linear-gradient(135deg, #FF6B35, #F7931E);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            box-shadow: 0 4px 12px rgba(255,107,53,0.3);
+        }
+        .export-buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .export-btn {
+            background: linear-gradient(135deg, #2B8B3E, #1F7A32);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .export-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(43,139,62,0.3);
+        }
+        .creative-element {
+            margin: 20px 0;
+        }
+        .navigation {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        .nav-btn {
+            background: #2B8B3E;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            margin: 2px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 11px;
+        }
+        .nav-btn:hover {
+            background: #1F7A32;
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигация -->
+    <div class="navigation">
+        <div class="text-sm font-bold text-gray-700 mb-2">Переходы:</div>
+        <div class="grid grid-cols-3 gap-1">
+            <button class="nav-btn" onclick="scrollToCreative(1)">200x400</button>
+            <button class="nav-btn" onclick="scrollToCreative(2)">320x50</button>
+            <button class="nav-btn" onclick="scrollToCreative(3)">468x60</button>
+            <button class="nav-btn" onclick="scrollToCreative(4)">728x90</button>
+            <button class="nav-btn" onclick="scrollToCreative(5)">250x250</button>
+            <button class="nav-btn" onclick="scrollToCreative(6)">200x200</button>
+            <button class="nav-btn" onclick="scrollToCreative(7)">336x280</button>
+            <button class="nav-btn" onclick="scrollToCreative(8)">300x250</button>
+            <button class="nav-btn" onclick="scrollToCreative(9)">120x600</button>
+            <button class="nav-btn" onclick="scrollToCreative(10)">160x600</button>
+            <button class="nav-btn" onclick="scrollToCreative(11)">970x90</button>
+        </div>
+    </div>
+
+    <!-- Креатив 1: 200x400 -->
+    <div id="creative-1" class="slide-container flex flex-col p-8">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-4xl font-bold text-main-green">Креатив 200x400</h1>
+            <img src="logo.png" alt="Логотип Экологическая альтернатива" class="logo">
+        </div>
+        
+        <div class="flex items-center justify-center h-full">
+            <div class="creative-element">
+                <div id="creative-200x400" class="creative-200x400 bg-white flex flex-col">
+                    <div class="main-green text-white text-center py-3 font-bold">
+                        РЕЗИНОВАЯ КРОШКА
+                    </div>
+                    
+                    <div class="relative flex-grow">
+                        <img src="WhatsApp Image 2025-05-28 at 10.41.22 (1).jpeg" alt="Резиновая крошка" class="rubber-crumb-img h-40">
+                        <div class="price-badge">от 25 ₽/кг</div>
+                    </div>
+                    
+                    <div class="p-3">
+                        <h3 class="text-main-green font-bold text-sm mb-2">От производителя</h3>
+                        <ul class="text-xs">
+                            <li class="mb-1 flex items-start">
+                                <i class="fas fa-check text-main-green mr-1 mt-1"></i>
+                                <span>Все фракции</span>
+                            </li>
+                            <li class="mb-1 flex items-start">
+                                <i class="fas fa-check text-main-green mr-1 mt-1"></i>
+                                <span>Расход клея снижен до 20%</span>
+                            </li>
+                            <li class="mb-1 flex items-start">
+                                <i class="fas fa-check text-main-green mr-1 mt-1"></i>
+                                <span>Примеси менее 0,1%</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gray-100 p-2 text-center text-sm">
+                        <strong class="text-main-green">Крупнейший<br>производитель в СНГ</strong>
+                    </div>
+                </div>
+                
+                <div class="export-buttons">
+                    <button class="export-btn" onclick="exportToPNG('creative-200x400', '200x400')">
+                        <i class="fas fa-question-circle mr-1"></i>PNG (помощь)
+                    </button>
+                    <button class="export-btn" onclick="exportToPNGAlternative('creative-200x400', '200x400')" style="background: linear-gradient(135deg, #6c757d, #495057);">
+                        <i class="fas fa-download mr-1"></i>PNG (без фото)
+                    </button>
+                    <button class="export-btn" onclick="exportToSVG('creative-200x400', '200x400')">
+                        <i class="fas fa-download mr-1"></i>SVG
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-8">
+            <p class="text-gray-500">Креатив 1 из 11 | Размер: 200x400</p>
+        </div>
+    </div>
+
+    <!-- Креатив 2: 320x50 -->
+    <div id="creative-2" class="slide-container flex flex-col p-8">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-4xl font-bold text-main-green">Креатив 320x50</h1>
+            <img src="logo.png" alt="Логотип Экологическая альтернатива" class="logo">
+        </div>
+        
+        <div class="flex items-center justify-center h-full">
+            <div class="creative-element">
+                <div id="creative-320x50" class="creative-320x50 bg-white" style="width: 320px; height: 50px; border: 2px solid #e0e0e0; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.15); margin: 0 auto; position: relative; display: flex; align-items: center;">
+                    <div class="h-full w-1/5 main-green flex items-center justify-center">
+                        <div class="text-white font-bold text-xs text-center leading-tight">ОТ<br>25₽<br><span class="text-xs">за кг</span></div>
+                    </div>
+                    
+                    <div class="h-full flex-grow flex items-center pl-2">
+                        <div class="flex flex-col">
+                            <div class="font-bold text-xs text-main-green">РЕЗИНОВАЯ КРОШКА</div>
+                            <div class="text-xs">Крупнейший производитель</div>
+                        </div>
+                    </div>
+                    
+                    <div class="h-full flex items-center justify-center px-1">
+                        <img src="logo.png" alt="Логотип" class="h-8">
+                    </div>
+                </div>
+                
+                <div class="export-buttons">
+                    <button class="export-btn" onclick="exportToPNG('creative-320x50', '320x50')">
+                        <i class="fas fa-download mr-1"></i>PNG
+                    </button>
+                    <button class="export-btn" onclick="exportToSVG('creative-320x50', '320x50')">
+                        <i class="fas fa-download mr-1"></i>SVG
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-8">
+            <p class="text-gray-500">Креатив 2 из 11 | Размер: 320x50</p>
+        </div>
+    </div>
+
+    <!-- Креатив 3: 468x60 -->
+    <div id="creative-3" class="slide-container flex flex-col p-8">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-4xl font-bold text-main-green">Креатив 468x60</h1>
+            <img src="logo.png" alt="Логотип Экологическая альтернатива" class="logo">
+        </div>
+        
+        <div class="flex items-center justify-center h-full">
+            <div class="creative-element">
+                <div id="creative-468x60" style="width: 468px; height: 60px; border: 2px solid #e0e0e0; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.15); margin: 0 auto; position: relative; display: flex; align-items: center; background: white;">
+                    <div class="h-full w-12 main-green flex items-center justify-center">
+                        <div class="text-white font-bold text-xs text-center leading-tight">от<br>25₽<br><span style="font-size: 8px;">за кг</span></div>
+                    </div>
+                    
+                    <div class="h-full flex items-center justify-center">
+                        <img src="WhatsApp Image 2025-05-28 at 10.41.22 (1).jpeg" alt="Резиновая крошка" style="height: 50px; width: 50px; object-fit: cover; margin: 0 5px; border-radius: 4px;">
+                    </div>
+                    
+                    <div class="h-full flex-grow flex items-center pl-2">
+                        <div class="flex flex-col">
+                            <div class="font-bold text-sm text-main-green">РЕЗИНОВАЯ КРОШКА ОТ ПРОИЗВОДИТЕЛЯ</div>
+                            <div class="text-xs">Крупнейший производитель в СНГ</div>
+                        </div>
+                    </div>
+                    
+                    <div class="h-full flex items-center justify-center px-1">
+                        <img src="logo.png" alt="Логотип" style="height: 40px; width: auto; margin-right: 5px;">
+                    </div>
+                </div>
+                
+                <div class="export-buttons">
+                    <button class="export-btn" onclick="exportToPNG('creative-468x60', '468x60')">
+                        <i class="fas fa-download mr-1"></i>PNG
+                    </button>
+                    <button class="export-btn" onclick="exportToSVG('creative-468x60', '468x60')">
+                        <i class="fas fa-download mr-1"></i>SVG
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-8">
+            <p class="text-gray-500">Креатив 3 из 11 | Размер: 468x60</p>
+        </div>
+    </div>
+
+    <!-- Креатив 4: 728x90 -->
+    <div id="creative-4" class="slide-container flex flex-col p-8">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-4xl font-bold text-main-green">Креатив 728x90</h1>
+            <img src="logo.png" alt="Логотип Экологическая альтернатива" class="logo">
+        </div>
+        
+        <div class="flex items-center justify-center h-full">
+            <div class="creative-element">
+                <div id="creative-728x90" style="width: 728px; height: 90px; border: 2px solid #e0e0e0; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.15); margin: 0 auto; position: relative; display: flex; align-items: center; background: white;">
+                    <div class="h-full w-24 main-green flex items-center justify-center">
+                        <div class="text-white font-bold text-center leading-tight">
+                            <div class="text-lg">25₽</div>
+                            <div class="text-xs">за кг</div>
+                        </div>
+                    </div>
+                    
+                    <div class="h-full flex items-center justify-center p-2">
+                        <img src="WhatsApp Image 2025-05-28 at 10.41.22 (1).jpeg" alt="Резиновая крошка" style="height: 70px; width: 70px; object-fit: cover; border-radius: 8px;">
+                    </div>
+                    
+                    <div class="h-full flex-grow flex flex-col justify-center pl-6">
+                        <div class="font-bold text-2xl text-main-green mb-1">РЕЗИНОВАЯ КРОШКА</div>
+                        <div class="text-sm text-gray-700">От крупнейшего производителя в СНГ • Все фракции • Без примесей</div>
+                    </div>
+                    
+                    <div class="h-full flex items-center justify-center p-3">
+                        <img src="logo.png" alt="Логотип" style="height: 60px; width: auto;">
+                    </div>
+                </div>
+                
+                <div class="export-buttons">
+                    <button class="export-btn" onclick="exportToPNG('creative-728x90', '728x90')">
+                        <i class="fas fa-download mr-1"></i>PNG
+                    </button>
+                    <button class="export-btn" onclick="exportToSVG('creative-728x90', '728x90')">
+                        <i class="fas fa-download mr-1"></i>SVG
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-8">
+            <p class="text-gray-500">Креатив 4 из 11 | Размер: 728x90</p>
+        </div>
+    </div>
+
+    <!-- Креатив 5: 250x250 -->
+    <div id="creative-5" class="slide-container flex flex-col p-8">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-4xl font-bold text-main-green">Креатив 250x250</h1>
+            <img src="logo.png" alt="Логотип Экологическая альтернатива" class="logo">
+        </div>
+        
+        <div class="flex items-center justify-center h-full">
+            <div class="creative-element">
+                <div id="creative-250x250" style="width: 250px; height: 250px; border: 2px solid #e0e0e0; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.15); margin: 0 auto; position: relative; background: white;" class="flex flex-col">
+                    <div class="main-green text-white text-center py-2 font-bold">
+                        РЕЗИНОВАЯ КРОШКА
+                    </div>
+                    
+                    <div class="flex-grow relative">
+                        <img src="WhatsApp Image 2025-05-28 at 10.41.22 (1).jpeg" alt="Резиновая крошка" class="w-full h-32 object-cover">
+                        <div class="price-badge">от 25 ₽/кг</div>
+                    </div>
+                    
+                    <div class="bg-white p-2">
+                        <div class="text-xs font-bold text-main-green mb-1 text-center">КРУПНЕЙШИЙ<br>ПРОИЗВОДИТЕЛЬ В СНГ</div>
+                        <div class="flex text-xs justify-center gap-3">
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-main-green mr-1"></i>
+                                <span>Все фракции</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-main-green mr-1"></i>
+                                <span>Без примесей</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="export-buttons">
+                    <button class="export-btn" onclick="exportToPNG('creative-250x250', '250x250')">
+                        <i class="fas fa-download mr-1"></i>PNG
+                    </button>
+                    <button class="export-btn" onclick="exportToSVG('creative-250x250', '250x250')">
+                        <i class="fas fa-download mr-1"></i>SVG
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-8">
+            <p class="text-gray-500">Креатив 5 из 11 | Размер: 250x250</p>
+        </div>
+    </div>
+
+    <!-- Креатив 6: 200x200 -->
+    <div id="creative-6" class="slide-container flex flex-col p-8">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-4xl font-bold text-main-green">Креатив 200x200</h1>
+            <img src="logo.png" alt="Логотип Экологическая альтернатива" class="logo">
+        </div>
+        
+        <div class="flex items-center justify-center h-full">
+            <div class="creative-element">
+                <div id="creative-200x200" style="width: 200px; height: 200px; border: 2px solid #e0e0e0; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.15); margin: 0 auto; position: relative; background: white;" class="flex flex-col">
+                    <div class="main-green text-white text-center py-2 font-bold text-sm">
+                        РЕЗИНОВАЯ КРОШКА
+                    </div>
+                    
+                    <div class="flex-grow relative">
+                        <img src="WhatsApp Image 2025-05-28 at 10.41.22 (1).jpeg" alt="Резиновая крошка" class="w-full h-28 object-cover">
+                        <div class="price-badge">от 25 ₽/кг</div>
+                    </div>
+                    
+                    <div class="bg-white p-2">
+                        <div class="text-xs font-bold text-main-green mb-1">ОТ ПРОИЗВОДИТЕЛЯ</div>
+                        <div class="text-xs">Крупнейшего в СНГ</div>
+                    </div>
+                </div>
+                
+                <div class="export-buttons">
+                    <button class="export-btn" onclick="exportToPNG('creative-200x200', '200x200')">
+                        <i class="fas fa-download mr-1"></i>PNG
+                    </button>
+                    <button class="export-btn" onclick="exportToSVG('creative-200x200', '200x200')">
+                        <i class="fas fa-download mr-1"></i>SVG
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-8">
+            <p class="text-gray-500">Креатив 6 из 11 | Размер: 200x200</p>
+        </div>
+    </div>
+
+    <!-- Креатив 7: 336x280 -->
+    <div id="creative-7" class="slide-container flex flex-col p-8">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-4xl font-bold text-main-green">Креатив 336x280</h1>
+            <img src="logo.png" alt="Логотип Экологическая альтернатива" class="logo">
+        </div>
+        
+        <div class="flex items-center justify-center h-full">
+            <div class="creative-element">
+                <div id="creative-336x280" style="width: 336px; height: 280px; border: 2px solid #e0e0e0; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.15); margin: 0 auto; position: relative; background: white;" class="flex flex-col">
+                    <div class="main-green text-white text-center py-2 font-bold text-lg">
+                        РЕЗИНОВАЯ КРОШКА
+                    </div>
+                    
+                    <div class="flex-grow relative">
+                        <img src="WhatsApp Image 2025-05-28 at 10.41.22 (1).jpeg" alt="Резиновая крошка" class="w-full h-40 object-cover">
+                        <div class="price-badge">от 25 ₽/кг</div>
+                    </div>
+                    
+                    <div class="bg-white p-2">
+                        <div class="text-xs font-bold text-main-green mb-1 text-center">ОТ ПРОИЗВОДИТЕЛЯ</div>
+                        <div class="flex text-xs justify-center gap-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-main-green mr-1"></i>
+                                <span>Все фракции</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-main-green mr-1"></i>
+                                <span>Без примесей</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-main-green mr-1"></i>
+                                <span>Ровный срез</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="main-green text-white text-center py-1 text-xs font-bold">
+                        КРУПНЕЙШИЙ ПРОИЗВОДИТЕЛЬ В СНГ
+                    </div>
+                </div>
+                
+                <div class="export-buttons">
+                    <button class="export-btn" onclick="exportToPNG('creative-336x280', '336x280')">
+                        <i class="fas fa-download mr-1"></i>PNG
+                    </button>
+                    <button class="export-btn" onclick="exportToSVG('creative-336x280', '336x280')">
+                        <i class="fas fa-download mr-1"></i>SVG
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-8">
+            <p class="text-gray-500">Креатив 7 из 11 | Размер: 336x280</p>
+        </div>
+    </div>
+
+    <!-- Креатив 8: 300x250 -->
+    <div id="creative-8" class="slide-container flex flex-col p-8">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-4xl font-bold text-main-green">Креатив 300x250</h1>
+            <img src="logo.png" alt="Логотип Экологическая альтернатива" class="logo">
+        </div>
+        
+        <div class="flex items-center justify-center h-full">
+            <div class="creative-element">
+                <div id="creative-300x250" style="width: 300px; height: 250px; border: 2px solid #e0e0e0; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.15); margin: 0 auto; position: relative; background: white;" class="flex flex-col">
+                    <div class="main-green text-white text-center py-2 font-bold text-lg">
+                        РЕЗИНОВАЯ КРОШКА
+                    </div>
+                    
+                    <div class="flex-grow relative">
+                        <img src="WhatsApp Image 2025-05-28 at 10.38.48.jpeg" alt="Резиновая крошка" class="w-full h-36 object-cover" style="object-position: center;">
+                        <div class="price-badge">от 25 ₽/кг</div>
+                    </div>
+                    
+                    <div class="bg-white p-2">
+                        <div class="text-xs font-bold text-main-green mb-1 text-center">ОТ ПРОИЗВОДИТЕЛЯ</div>
+                        <div class="flex text-xs justify-center gap-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-main-green mr-1"></i>
+                                <span>Все фракции</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-main-green mr-1"></i>
+                                <span>Крупнейший в СНГ</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="export-buttons">
+                    <button class="export-btn" onclick="exportToPNG('creative-300x250', '300x250')">
+                        <i class="fas fa-download mr-1"></i>PNG
+                    </button>
+                    <button class="export-btn" onclick="exportToSVG('creative-300x250', '300x250')">
+                        <i class="fas fa-download mr-1"></i>SVG
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-8">
+            <p class="text-gray-500">Креатив 8 из 11 | Размер: 300x250</p>
+        </div>
+    </div>
+
+    <!-- Креатив 9: 120x600 -->
+    <div id="creative-9" class="slide-container flex flex-col p-8">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-4xl font-bold text-main-green">Креатив 120x600</h1>
+            <img src="logo.png" alt="Логотип Экологическая альтернатива" class="logo">
+        </div>
+        
+        <div class="flex justify-center">
+            <div class="creative-element">
+                <div id="creative-120x600" style="width: 120px; height: 600px; border: 2px solid #e0e0e0; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.15); margin: 0 auto; position: relative; background: white;" class="flex flex-col">
+                    <!-- Header -->
+                    <div class="main-green text-white text-center py-2 font-bold text-xs">
+                        РЕЗИНОВАЯ КРОШКА
+                    </div>
+                    
+                    <!-- Main image -->
+                    <div class="relative">
+                        <img src="WhatsApp Image 2025-05-28 at 10.38.48.jpeg" alt="Резиновая крошка" class="w-full h-40 object-cover">
+                    </div>
+                    
+                    <!-- Price -->
+                    <div class="main-green text-white text-center py-2 text-sm font-bold">
+                        от 25 ₽/кг
+                    </div>
+                    
+                    <!-- Second image -->
+                    <div class="relative">
+                        <img src="WhatsApp Image 2025-05-28 at 10.41.22 (1).jpeg" alt="Резиновая крошка фракции" class="w-full h-32 object-cover">
+                    </div>
+                    
+                    <!-- Features -->
+                    <div class="bg-white p-2">
+                        <div class="text-xs font-bold text-main-green mb-1 text-center" style="font-size: 10px; line-height: 1.2;">ОТ<br>ПРОИЗВОДИТЕЛЯ</div>
+                        <ul class="text-xs space-y-1">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-main-green mr-1 mt-0.5 text-xs"></i>
+                                <span style="font-size: 9px;">Все фракции</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-main-green mr-1 mt-0.5 text-xs"></i>
+                                <span style="font-size: 9px;">Без примесей</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-main-green mr-1 mt-0.5 text-xs"></i>
+                                <span style="font-size: 9px;">Ровный срез</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Logo -->
+                    <div class="p-2 flex justify-center">
+                        <img src="logo.png" alt="Логотип" class="h-6">
+                    </div>
+                    
+                    <!-- Bottom badge -->
+                    <div class="main-green text-white text-center py-1 text-xs font-bold" style="font-size: 10px; line-height: 1.2;">
+                        КРУПНЕЙШИЙ<br>ПРОИЗВОДИТЕЛЬ<br>В СНГ
+                    </div>
+                </div>
+                
+                <div class="export-buttons">
+                    <button class="export-btn" onclick="exportToPNG('creative-120x600', '120x600')">
+                        <i class="fas fa-download mr-1"></i>PNG
+                    </button>
+                    <button class="export-btn" onclick="exportToSVG('creative-120x600', '120x600')">
+                        <i class="fas fa-download mr-1"></i>SVG
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-6">
+            <p class="text-gray-500">Креатив 9 из 11 | Размер: 120x600</p>
+        </div>
+    </div>
+
+    <!-- Креатив 10: 160x600 -->
+    <div id="creative-10" class="slide-container flex flex-col p-8">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-4xl font-bold text-main-green">Креатив 160x600</h1>
+            <img src="logo.png" alt="Логотип Экологическая альтернатива" class="logo">
+        </div>
+        
+        <div class="flex justify-center">
+            <div class="creative-element">
+                <div id="creative-160x600" style="width: 160px; height: 600px; border: 2px solid #e0e0e0; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.15); margin: 0 auto; position: relative; background: white;" class="flex flex-col">
+                    <!-- Header -->
+                    <div class="main-green text-white text-center py-3 font-bold text-sm">
+                        РЕЗИНОВАЯ КРОШКА
+                    </div>
+                    
+                    <!-- Main image -->
+                    <div class="relative">
+                        <img src="WhatsApp Image 2025-05-28 at 10.38.48.jpeg" alt="Резиновая крошка" class="w-full h-44 object-cover">
+                    </div>
+                    
+                    <!-- Price -->
+                    <div class="main-green text-white text-center py-2 font-bold">
+                        от 25 ₽/кг
+                    </div>
+                    
+                    <!-- Second image -->
+                    <div class="relative">
+                        <img src="WhatsApp Image 2025-05-28 at 10.41.22 (1).jpeg" alt="Резиновая крошка фракции" class="w-full h-36 object-cover">
+                    </div>
+                    
+                    <!-- Features -->
+                    <div class="bg-white p-2">
+                        <div class="text-xs font-bold text-main-green mb-1 text-center" style="font-size: 11px;">ОТ ПРОИЗВОДИТЕЛЯ</div>
+                        <ul class="text-xs space-y-1 text-center">
+                            <li class="flex items-center justify-center">
+                                <i class="fas fa-check-circle text-main-green mr-1"></i>
+                                <span style="font-size: 10px;">Все фракции</span>
+                            </li>
+                            <li class="flex items-center justify-center">
+                                <i class="fas fa-check-circle text-main-green mr-1"></i>
+                                <span style="font-size: 10px;">Без примесей</span>
+                            </li>
+                            <li class="flex items-center justify-center">
+                                <i class="fas fa-check-circle text-main-green mr-1"></i>
+                                <span style="font-size: 10px;">Ровный срез</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Logo -->
+                    <div class="p-2 flex justify-center flex-grow">
+                        <img src="logo.png" alt="Логотип" class="h-10">
+                    </div>
+                </div>
+                
+                <div class="export-buttons">
+                    <button class="export-btn" onclick="exportToPNG('creative-160x600', '160x600')">
+                        <i class="fas fa-download mr-1"></i>PNG
+                    </button>
+                    <button class="export-btn" onclick="exportToSVG('creative-160x600', '160x600')">
+                        <i class="fas fa-download mr-1"></i>SVG
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-6">
+            <p class="text-gray-500">Креатив 10 из 11 | Размер: 160x600</p>
+        </div>
+    </div>
+
+    <!-- Креатив 11: 970x90 -->
+    <div id="creative-11" class="slide-container flex flex-col p-8">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-4xl font-bold text-main-green">Креатив 970x90</h1>
+            <img src="logo.png" alt="Логотип Экологическая альтернатива" class="logo">
+        </div>
+        
+        <div class="flex items-center justify-center h-full">
+            <div class="creative-element">
+                <div id="creative-970x90" style="width: 970px; height: 90px; border: 2px solid #e0e0e0; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.15); margin: 0 auto; position: relative; display: flex; align-items: center; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
+                    <div class="h-full w-28 main-green flex items-center justify-center">
+                        <div class="text-white font-bold text-center">
+                            <div class="text-sm">от</div>
+                            <div class="text-2xl">25₽</div>
+                            <div class="text-xs">за кг</div>
+                        </div>
+                    </div>
+                    
+                    <div class="h-full flex items-center justify-center p-3">
+                        <img src="WhatsApp Image 2025-05-28 at 10.41.22 (1).jpeg" alt="Резиновая крошка" style="height: 75px; width: 75px; object-fit: cover; border-radius: 50%; border: 3px solid #2B8B3E;">
+                    </div>
+                    
+                    <div class="h-full flex-grow flex flex-col justify-center pl-6">
+                        <div class="font-bold text-3xl text-main-green mb-1">РЕЗИНОВАЯ КРОШКА</div>
+                        <div class="text-lg text-gray-700 font-medium">Крупнейший производитель в СНГ</div>
+                    </div>
+                    
+                    <div class="h-full flex flex-col items-center justify-center p-4 bg-white rounded-lg mr-4" style="min-width: 120px;">
+                        <img src="logo.png" alt="Логотип" style="height: 60px; width: auto;">
+                    </div>
+                </div>
+                
+                <div class="export-buttons">
+                    <button class="export-btn" onclick="exportToPNG('creative-970x90', '970x90')">
+                        <i class="fas fa-download mr-1"></i>PNG
+                    </button>
+                    <button class="export-btn" onclick="exportToSVG('creative-970x90', '970x90')">
+                        <i class="fas fa-download mr-1"></i>SVG
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-8">
+            <p class="text-gray-500">Креатив 11 из 11 | Размер: 970x90</p>
+        </div>
+        
+        <div class="mt-12 text-center">
+            <div class="inline-flex items-center bg-main-green text-white px-6 py-3 rounded-lg text-lg">
+                <i class="fas fa-check-circle mr-2"></i>
+                <span>Серия креативов для рекламной кампании завершена</span>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function scrollToCreative(number) {
+            document.getElementById('creative-' + number).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        function exportToPNG(elementId, size) {
+            // Альтернативный метод экспорта
+            showExportInstructions(size);
+        }
+        
+        function showExportInstructions(size) {
+            // Создаём модальное окно с инструкциями
+            const modal = document.createElement('div');
+            modal.style.position = 'fixed';
+            modal.style.top = '0';
+            modal.style.left = '0';
+            modal.style.width = '100%';
+            modal.style.height = '100%';
+            modal.style.backgroundColor = 'rgba(0,0,0,0.8)';
+            modal.style.zIndex = '10000';
+            modal.style.display = 'flex';
+            modal.style.alignItems = 'center';
+            modal.style.justifyContent = 'center';
+            
+            const content = document.createElement('div');
+            content.style.backgroundColor = 'white';
+            content.style.padding = '30px';
+            content.style.borderRadius = '10px';
+            content.style.maxWidth = '500px';
+            content.style.textAlign = 'center';
+            
+            content.innerHTML = `
+                <h3 style="color: #2B8B3E; margin-bottom: 20px;">📸 Экспорт креатива ${size}</h3>
+                <p style="margin-bottom: 15px;">Из-за локальных изображений автоматический экспорт недоступен.</p>
+                <p style="margin-bottom: 20px;"><strong>Инструкция:</strong></p>
+                <ol style="text-align: left; margin-bottom: 20px;">
+                    <li>Закройте это окно</li>
+                    <li>Сделайте скриншот креатива (⌘+Shift+4 на Mac или Win+Shift+S на Windows)</li>
+                    <li>Выделите только область креатива</li>
+                    <li>Сохраните как PNG</li>
+                </ol>
+                <p style="font-size: 12px; color: #666; margin-bottom: 20px;">
+                    Альтернативно: используйте SVG экспорт или запустите файл через веб-сервер.
+                </p>
+                <button onclick="this.closest('div').parentElement.remove()" 
+                        style="background: #2B8B3E; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
+                    Понятно
+                </button>
+            `;
+            
+            modal.appendChild(content);
+            document.body.appendChild(modal);
+            
+            // Закрыть при клике вне окна
+            modal.onclick = function(e) {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            };
+        }
+        
+        function exportToPNGAlternative(elementId, size) {
+            // Попытка экспорта без изображений (только стили и текст)
+            const element = document.getElementById(elementId);
+            const clone = element.cloneNode(true);
+            
+            // Убираем все изображения и заменяем на цветные блоки
+            const images = clone.querySelectorAll('img');
+            images.forEach(img => {
+                const placeholder = document.createElement('div');
+                placeholder.style.width = img.style.width || '100%';
+                placeholder.style.height = img.style.height || '100px';
+                placeholder.style.backgroundColor = '#f0f0f0';
+                placeholder.style.display = 'flex';
+                placeholder.style.alignItems = 'center';
+                placeholder.style.justifyContent = 'center';
+                placeholder.style.fontSize = '12px';
+                placeholder.style.color = '#666';
+                placeholder.innerHTML = 'Фото';
+                img.parentNode.replaceChild(placeholder, img);
+            });
+            
+            // Создаём временный контейнер
+            const tempContainer = document.createElement('div');
+            tempContainer.style.position = 'absolute';
+            tempContainer.style.left = '-9999px';
+            tempContainer.appendChild(clone);
+            document.body.appendChild(tempContainer);
+            
+            html2canvas(clone, {
+                backgroundColor: 'white',
+                scale: 2,
+                logging: false
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `rubber-crumb-creative-${size}-no-images.png`;
+                link.href = canvas.toDataURL('image/png', 1.0);
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                document.body.removeChild(tempContainer);
+                
+                // Показать уведомление
+                const notification = document.createElement('div');
+                notification.innerHTML = '✅ PNG создан (без изображений)';
+                notification.style.position = 'fixed';
+                notification.style.top = '20px';
+                notification.style.left = '50%';
+                notification.style.transform = 'translateX(-50%)';
+                notification.style.background = '#28a745';
+                notification.style.color = 'white';
+                notification.style.padding = '10px 20px';
+                notification.style.borderRadius = '5px';
+                notification.style.zIndex = '9999';
+                document.body.appendChild(notification);
+                setTimeout(() => document.body.removeChild(notification), 3000);
+            }).catch(error => {
+                console.error('Ошибка:', error);
+                document.body.removeChild(tempContainer);
+                showExportInstructions(size);
+            });
+        }
+
+        function exportToSVG(elementId, size) {
+            try {
+                const element = document.getElementById(elementId);
+                const rect = element.getBoundingClientRect();
+                
+                // Создаём SVG строку с встроенными стилями
+                const svgString = `
+                    <svg xmlns="http://www.w3.org/2000/svg" width="${rect.width}" height="${rect.height}">
+                        <defs>
+                            <style>
+                                .main-green { background: linear-gradient(135deg, #2B8B3E, #1F7A32); }
+                                .text-main-green { color: #2B8B3E; }
+                                .price-badge { 
+                                    background: linear-gradient(135deg, #FF6B35, #F7931E);
+                                    color: white;
+                                    padding: 6px 12px;
+                                    border-radius: 20px;
+                                    font-weight: bold;
+                                    font-size: 14px;
+                                }
+                            </style>
+                        </defs>
+                        <foreignObject width="100%" height="100%">
+                            <div xmlns="http://www.w3.org/1999/xhtml" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                                ${element.innerHTML.replace(/src="([^"]*\.(?:jpg|jpeg|png|gif))"/gi, 'src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2Y4ZjlmYSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiM2Yzc1N2QiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIwLjNlbSI+0KTQvtGC0L4g0L3QtdC00L7RgdGC0YPQv9C90L48L3RleHQ+PC9zdmc+"')}
+                            </div>
+                        </foreignObject>
+                    </svg>`;
+                
+                const blob = new Blob([svgString], {type: 'image/svg+xml;charset=utf-8'});
+                const link = document.createElement('a');
+                link.download = `rubber-crumb-creative-${size}.svg`;
+                link.href = URL.createObjectURL(blob);
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(link.href);
+                
+                // Показываем уведомление об успехе
+                const notification = document.createElement('div');
+                notification.innerHTML = '✅ SVG готов!';
+                notification.style.position = 'fixed';
+                notification.style.top = '20px';
+                notification.style.left = '50%';
+                notification.style.transform = 'translateX(-50%)';
+                notification.style.background = '#28a745';
+                notification.style.color = 'white';
+                notification.style.padding = '10px 20px';
+                notification.style.borderRadius = '5px';
+                notification.style.zIndex = '9999';
+                document.body.appendChild(notification);
+                setTimeout(() => document.body.removeChild(notification), 2000);
+                
+            } catch (error) {
+                console.error('Ошибка SVG экспорта:', error);
+                alert('Ошибка экспорта SVG. Попробуйте PNG вместо SVG.');
+            }
+        }
+
+        // Функция для обновления всех кнопок после загрузки страницы
+        function updateAllExportButtons() {
+            const creatives = [
+                {id: 'creative-200x400', size: '200x400'},
+                {id: 'creative-320x50', size: '320x50'},
+                {id: 'creative-468x60', size: '468x60'},
+                {id: 'creative-728x90', size: '728x90'},
+                {id: 'creative-250x250', size: '250x250'},
+                {id: 'creative-200x200', size: '200x200'},
+                {id: 'creative-336x280', size: '336x280'},
+                {id: 'creative-300x250', size: '300x250'},
+                {id: 'creative-120x600', size: '120x600'},
+                {id: 'creative-160x600', size: '160x600'},
+                {id: 'creative-970x90', size: '970x90'}
+            ];
+            
+            creatives.forEach(creative => {
+                const element = document.getElementById(creative.id);
+                if (element) {
+                    const exportContainer = element.parentElement.querySelector('.export-buttons');
+                    if (exportContainer) {
+                        exportContainer.innerHTML = `
+                            <button class="export-btn" onclick="exportToPNG('${creative.id}', '${creative.size}')">
+                                <i class="fas fa-question-circle mr-1"></i>PNG (помощь)
+                            </button>
+                            <button class="export-btn" onclick="exportToPNGAlternative('${creative.id}', '${creative.size}')" style="background: linear-gradient(135deg, #6c757d, #495057);">
+                                <i class="fas fa-download mr-1"></i>PNG (без фото)
+                            </button>
+                            <button class="export-btn" onclick="exportToSVG('${creative.id}', '${creative.size}')">
+                                <i class="fas fa-download mr-1"></i>SVG
+                            </button>
+                        `;
+                    }
+                }
+            });
+        }
+        
+        // Запускаем обновление кнопок после загрузки DOM
+        document.addEventListener('DOMContentLoaded', updateAllExportButtons);
+    </script>
+</body>
+</html>
