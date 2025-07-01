@@ -527,6 +527,120 @@ color: #666;
 display: none !important;
 }
 
+/* Mobile Phone Menu Dropdown */
+.mobile-phone-dropdown {
+position: relative;
+}
+
+.mobile-phone-menu {
+position: absolute;
+top: 100%;
+right: 0;
+background: white;
+border-radius: 12px;
+box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+padding: 8px;
+min-width: 260px;
+opacity: 0;
+transform: translateY(-10px) scale(0.95);
+transition: all 0.2s ease-out;
+pointer-events: none;
+z-index: 1000;
+margin-top: 8px;
+}
+
+.mobile-phone-menu.show {
+opacity: 1;
+transform: translateY(0) scale(1);
+pointer-events: auto;
+}
+
+.mobile-phone-menu-item {
+display: flex;
+align-items: center;
+padding: 12px 16px;
+border-radius: 8px;
+margin-bottom: 4px;
+transition: background-color 0.2s ease;
+text-decoration: none;
+color: #333;
+}
+
+.mobile-phone-menu-item:last-child {
+margin-bottom: 0;
+}
+
+.mobile-phone-menu-item:hover {
+background-color: #f5f5f5;
+}
+
+.mobile-phone-menu-item:active {
+background-color: #e5e5e5;
+transform: scale(0.98);
+}
+
+.mobile-phone-menu-icon {
+width: 40px;
+height: 40px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+margin-right: 12px;
+color: white;
+font-size: 18px;
+flex-shrink: 0;
+}
+
+.mobile-phone-menu-icon.belarus {
+background: linear-gradient(135deg, #00AA00, #FF0000);
+}
+
+.mobile-phone-menu-icon.russia {
+background: linear-gradient(135deg, #0066CC, #FF0000);
+}
+
+.mobile-phone-menu-text {
+flex: 1;
+}
+
+.mobile-phone-menu-title {
+font-weight: 600;
+font-size: 15px;
+margin-bottom: 2px;
+line-height: 1.2;
+}
+
+.mobile-phone-menu-subtitle {
+font-size: 13px;
+color: #666;
+line-height: 1.1;
+}
+
+/* Arrow indicator for dropdown */
+.mobile-phone-menu::before {
+content: '';
+position: absolute;
+top: -6px;
+right: 16px;
+width: 12px;
+height: 12px;
+background: white;
+transform: rotate(45deg);
+box-shadow: -2px -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Overlay to capture outside clicks */
+.mobile-phone-overlay {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: 999;
+display: none;
+}
+
 /* Form submission states */
 button[type="submit"] {
 transition: all 0.3s ease;
@@ -722,9 +836,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <a href="https://wa.me/375447733238" class="w-8 h-8 flex items-center justify-center bg-[#25D366] hover:opacity-90 rounded-full transition-opacity">
 <i class="ri-whatsapp-fill text-white"></i>
 </a>
-<a href="#contacts" class="w-8 h-8 md:hidden flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full transition-colors">
+<div class="mobile-phone-dropdown md:hidden">
+<div id="mobilePhoneOverlay" class="mobile-phone-overlay"></div>
+<button id="mobilePhoneButton" class="w-8 h-8 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full transition-colors">
 <i class="ri-phone-fill text-white"></i>
+</button>
+<div id="mobilePhoneMenu" class="mobile-phone-menu">
+<a href="tel:+375447733238" class="mobile-phone-menu-item">
+<div class="mobile-phone-menu-icon belarus">
+<i class="ri-phone-fill"></i>
+</div>
+<div class="mobile-phone-menu-text">
+<div class="mobile-phone-menu-title">Беларусь</div>
+<div class="mobile-phone-menu-subtitle">+375 (44) 77-33-238</div>
+</div>
 </a>
+<a href="tel:+74999233815" class="mobile-phone-menu-item">
+<div class="mobile-phone-menu-icon russia">
+<i class="ri-phone-fill"></i>
+</div>
+<div class="mobile-phone-menu-text">
+<div class="mobile-phone-menu-title">Россия</div>
+<div class="mobile-phone-menu-subtitle">+7 (499) 923-38-15</div>
+</div>
+</a>
+</div>
+</div>
 <button class="request-price-btn bg-primary hover:bg-opacity-90 text-black px-4 py-2 !rounded-button whitespace-nowrap font-medium">Запросить цены</button>
 </div>
 </div>
@@ -1710,7 +1847,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-<script src="form-handler.js?v=20250701" defer></script>
+<script src="form-handler.js?v=20250701-mobile" defer></script>
 <script>
 // Optimized JavaScript for better performance and functionality
 (function() {
@@ -2162,6 +2299,80 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
   
+  // Mobile Phone Dropdown Menu
+  function initMobilePhoneDropdown() {
+    const button = document.getElementById('mobilePhoneButton');
+    const menu = document.getElementById('mobilePhoneMenu');
+    const overlay = document.getElementById('mobilePhoneOverlay');
+    
+    if (!button || !menu || !overlay) return;
+    
+    let isOpen = false;
+    
+    function toggleMenu() {
+      isOpen = !isOpen;
+      
+      if (isOpen) {
+        menu.classList.add('show');
+        overlay.style.display = 'block';
+        button.style.background = 'rgba(255, 255, 255, 0.2)';
+      } else {
+        menu.classList.remove('show');
+        overlay.style.display = 'none';
+        button.style.background = '';
+      }
+    }
+    
+    function closeMenu() {
+      if (isOpen) {
+        isOpen = false;
+        menu.classList.remove('show');
+        overlay.style.display = 'none';
+        button.style.background = '';
+      }
+    }
+    
+    // Toggle menu on button click
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleMenu();
+    });
+    
+    // Close menu when clicking overlay
+    overlay.addEventListener('click', closeMenu);
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!button.contains(e.target) && !menu.contains(e.target)) {
+        closeMenu();
+      }
+    });
+    
+    // Close menu on escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeMenu();
+      }
+    });
+    
+    // Add haptic feedback on phone menu items (mobile only)
+    const menuItems = menu.querySelectorAll('.mobile-phone-menu-item');
+    menuItems.forEach(item => {
+      item.addEventListener('click', function(e) {
+        // Vibrate if supported
+        if (navigator.vibrate) {
+          navigator.vibrate(50);
+        }
+        
+        // Close menu after short delay to show selection
+        setTimeout(closeMenu, 150);
+      });
+    });
+    
+    console.log('📱 Mobile phone dropdown initialized');
+  }
+
   // Simple Replain integration for messenger links
   function initReplainIntegration() {
     // Simple function to try opening Replain, fallback to original link
@@ -2230,6 +2441,7 @@ document.addEventListener("DOMContentLoaded", function() {
   initSmoothScroll();
   initSliderComparison();
   initExitIntentPopup();
+  initMobilePhoneDropdown();
   initReplainIntegration();
   
   // Custom checkbox styling (removed - no checkboxes needed)
