@@ -535,14 +535,15 @@ position: relative;
 .mobile-phone-menu {
 position: absolute;
 top: 100%;
-right: 0;
+left: 50%;
+transform: translateX(-50%) translateY(-10px) scale(0.95);
 background: white;
 border-radius: 12px;
 box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 padding: 8px;
 min-width: 260px;
+max-width: calc(100vw - 32px);
 opacity: 0;
-transform: translateY(-10px) scale(0.95);
 transition: all 0.2s ease-out;
 pointer-events: none;
 z-index: 1000;
@@ -551,7 +552,7 @@ margin-top: 8px;
 
 .mobile-phone-menu.show {
 opacity: 1;
-transform: translateY(0) scale(1);
+transform: translateX(-50%) translateY(0) scale(1);
 pointer-events: auto;
 }
 
@@ -622,11 +623,11 @@ line-height: 1.1;
 content: '';
 position: absolute;
 top: -6px;
-right: 16px;
+left: 50%;
+transform: translateX(-50%) rotate(45deg);
 width: 12px;
 height: 12px;
 background: white;
-transform: rotate(45deg);
 box-shadow: -2px -2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -1847,7 +1848,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-<script src="form-handler.js?v=20250701-mobile" defer></script>
+<script src="form-handler.js?v=20250701-mobile-centered" defer></script>
 <script>
 // Optimized JavaScript for better performance and functionality
 (function() {
@@ -2316,10 +2317,28 @@ document.addEventListener("DOMContentLoaded", function() {
         menu.classList.add('show');
         overlay.style.display = 'block';
         button.style.background = 'rgba(255, 255, 255, 0.2)';
+        
+        // Адаптивное позиционирование для предотвращения обрезания
+        setTimeout(() => {
+          const menuRect = menu.getBoundingClientRect();
+          const viewportWidth = window.innerWidth;
+          
+          // Если меню выходит за правый край
+          if (menuRect.right > viewportWidth - 16) {
+            const offset = menuRect.right - (viewportWidth - 16);
+            menu.style.left = `calc(50% - ${offset}px)`;
+          }
+          
+          // Если меню выходит за левый край
+          if (menuRect.left < 16) {
+            menu.style.left = '16px';
+          }
+        }, 10);
       } else {
         menu.classList.remove('show');
         overlay.style.display = 'none';
         button.style.background = '';
+        menu.style.left = ''; // Сброс позиционирования
       }
     }
     
