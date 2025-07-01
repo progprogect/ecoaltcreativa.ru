@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест EmailJS</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; }
+        .form-group { margin: 15px 0; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; }
+        button { background: #007bff; color: white; padding: 12px 30px; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .log { background: #f8f9fa; border: 1px solid #dee2e6; padding: 15px; margin: 20px 0; border-radius: 4px; }
+        .error { color: #dc3545; }
+        .success { color: #28a745; }
+        .info { color: #17a2b8; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Тест EmailJS для ecoalternativa.ru</h1>
+    
+    <form id="testForm">
+        <div class="form-group">
+            <label for="name">Имя:</label>
+            <input type="text" id="name" name="name" value="Тестовый пользователь" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="phone">Телефон:</label>
+            <input type="tel" id="phone" name="phone" value="+7 999 123-45-67" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="test@example.com">
+        </div>
+        
+        <div class="form-group">
+            <label for="volume">Объем (тонн):</label>
+            <input type="number" id="volume" name="volume" value="10">
+        </div>
+        
+        <div class="form-group">
+            <label for="comment">Комментарий:</label>
+            <textarea id="comment" name="comment" rows="3">Тестовая заявка для проверки EmailJS</textarea>
+        </div>
+        
+        <button type="submit">📧 Отправить тест</button>
+    </form>
+    
+    <div id="log" class="log">
+        <h3>📝 Лог отладки:</h3>
+        <div id="logContent">Нажмите "Отправить тест" для начала диагностики...</div>
+    </div>
+
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    
+    <script>
+        // Настройки EmailJS (как на продакшене)
+        const emailJSConfig = {
+            serviceId: 'service_kc39cmi', 
+            templateId: 'template_eouf19q', 
+            publicKey: 'qhL-cAKscZ7nMqAdq'
+        };
+        
+        let logContent = document.getElementById('logContent');
+        
+        function addLog(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const className = type === 'error' ? 'error' : type === 'success' ? 'success' : 'info';
+            logContent.innerHTML += `<div class="${className}">[${timestamp}] ${message}</div>`;
+            console.log(`[${timestamp}] ${message}`);
+        }
+        
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', function() {
+            addLog('🚀 Страница загружена');
+            
+            // Проверка EmailJS
+            if (typeof emailjs !== 'undefined') {
+                addLog('✅ EmailJS библиотека загружена');
+                try {
+                    emailjs.init(emailJSConfig.publicKey);
+                    addLog('✅ EmailJS инициализирован с ключом: ' + emailJSConfig.publicKey);
+                } catch (error) {
+                    addLog('❌ Ошибка инициализации EmailJS: ' + error.message, 'error');
+                }
+            } else {
+                addLog('❌ EmailJS библиотека НЕ загружена!', 'error');
+            }
+        });
+        
+        // Обработка формы
+        document.getElementById('testForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            logContent.innerHTML = '<h4>🧪 Начинаем тестирование...</h4>';
+            
+            // Получаем данные формы
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            addLog('📋 Данные формы получены: ' + JSON.stringify(data));
+            
+            // Проверяем EmailJS
+            if (typeof emailjs === 'undefined') {
+                addLog('❌ EmailJS недоступен!', 'error');
+                return;
+            }
+            
+            // Формируем параметры для шаблона
+            const templateParams = {
+                to_email: 'progprogect@gmail.com',
+                subject: '🧪 Тестовая заявка с диагностической страницы',
+                timestamp: new Date().toLocaleString('ru-RU'),
+                source: 'Диагностическая страница',
+                client_name: data.name || 'Не указано',
+                client_phone: data.phone || 'Не указан',
+                client_email: data.email || 'Не указан',
+                client_volume: data.volume || 'Не указан',
+                client_comment: data.comment || 'Без комментария',
+                full_message: `Тестовая заявка от ${data.name}\nТелефон: ${data.phone}\nEmail: ${data.email}\nОбъем: ${data.volume} тонн\nКомментарий: ${data.comment}`
+            };
+            
+            addLog('📤 Параметры для отправки: ' + JSON.stringify(templateParams, null, 2));
+            
+            try {
+                addLog('⏳ Отправляем через EmailJS...');
+                
+                const result = await emailjs.send(
+                    emailJSConfig.serviceId,
+                    emailJSConfig.templateId,
+                    templateParams
+                );
+                
+                addLog('🎉 УСПЕХ! Email отправлен через EmailJS', 'success');
+                addLog('📋 Результат: ' + JSON.stringify(result), 'success');
+                addLog('📬 Проверьте почту progprogect@gmail.com', 'success');
+                
+            } catch (error) {
+                addLog('❌ ОШИБКА EmailJS: ' + error.message, 'error');
+                addLog('🔍 Детали ошибки: ' + JSON.stringify(error), 'error');
+                
+                // Дополнительная диагностика
+                if (error.message.includes('Invalid public key')) {
+                    addLog('💡 Возможно неверный публичный ключ', 'error');
+                } else if (error.message.includes('Service not found')) {
+                    addLog('💡 Возможно неверный Service ID', 'error');
+                } else if (error.message.includes('Template not found')) {
+                    addLog('💡 Возможно неверный Template ID', 'error');
+                }
+            }
+        });
+    </script>
+</body>
+</html> 
