@@ -526,6 +526,58 @@ color: #666;
 .mobile-phone-button {
 display: none !important;
 }
+
+/* Form submission states */
+button[type="submit"] {
+transition: all 0.3s ease;
+position: relative;
+overflow: hidden;
+}
+
+button[type="submit"]:disabled {
+pointer-events: none;
+}
+
+button[type="submit"]:not(:disabled):hover {
+transform: translateY(-1px);
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+button[type="submit"]:not(:disabled):active {
+transform: translateY(0);
+}
+
+/* Loading animation */
+@keyframes pulse {
+0%, 100% { opacity: 1; }
+50% { opacity: 0.5; }
+}
+
+button[type="submit"]:disabled {
+animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Success feedback */
+.form-success {
+animation: successPulse 0.6s ease-out;
+}
+
+@keyframes successPulse {
+0% { transform: scale(1); }
+50% { transform: scale(1.05); }
+100% { transform: scale(1); }
+}
+
+/* Error feedback */
+.form-error {
+animation: errorShake 0.6s ease-out;
+}
+
+@keyframes errorShake {
+0%, 100% { transform: translateX(0); }
+10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+20%, 40%, 60%, 80% { transform: translateX(10px); }
+}
 </style>
 
 <!-- Yandex.Metrika counter -->
@@ -1658,7 +1710,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-<script src="form-handler.js?v=20250603" defer></script>
+<script src="form-handler.js?v=20250701" defer></script>
 <script>
 // Optimized JavaScript for better performance and functionality
 (function() {
@@ -1738,11 +1790,21 @@ document.addEventListener("DOMContentLoaded", function() {
     return formData;
   }
   
-  // Show notification
+  // Show notification with enhanced feedback
   function showNotification(container, message, isSuccess = true) {
     const notification = container.querySelector('div');
     const icon = notification.querySelector('i');
     const text = notification.querySelector('p');
+    const form = container.closest('form') || container.parentElement.querySelector('form');
+    
+    // Add visual feedback to form
+    if (form) {
+      form.classList.remove('form-success', 'form-error');
+      form.classList.add(isSuccess ? 'form-success' : 'form-error');
+      setTimeout(() => {
+        form.classList.remove('form-success', 'form-error');
+      }, 600);
+    }
     
     // Check if this is hero form notification (on dark background)
     const isHeroForm = container.id === 'hero-form-notification';
@@ -1763,9 +1825,28 @@ document.addEventListener("DOMContentLoaded", function() {
     
     text.textContent = message;
     
+    // Smooth show animation
+    container.style.opacity = '0';
+    container.style.transform = 'translateY(10px)';
     container.classList.remove('hidden');
+    
+    // Animate in
     setTimeout(() => {
-      container.classList.add('hidden');
+      container.style.transition = 'all 0.3s ease';
+      container.style.opacity = '1';
+      container.style.transform = 'translateY(0)';
+    }, 10);
+    
+    // Auto hide with fade out
+    setTimeout(() => {
+      container.style.opacity = '0';
+      container.style.transform = 'translateY(-10px)';
+      setTimeout(() => {
+        container.classList.add('hidden');
+        container.style.transition = '';
+        container.style.opacity = '';
+        container.style.transform = '';
+      }, 300);
     }, 5000);
   }
   
@@ -1781,19 +1862,20 @@ document.addEventListener("DOMContentLoaded", function() {
       
       if (!validateForm(form)) return;
       
+      const submitButton = form.querySelector('button[type="submit"]');
       const formData = addDefaultEmailToForm(new FormData(form));
       
       // Add default values for EmailJS compatibility
       if (!formData.get('volume')) formData.set('volume', 'Запрос образцов');
       if (!formData.get('comment')) formData.set('comment', 'Запрос образцов и цен с главной страницы');
       
-      const result = await window.formHandler.sendForm(formData, 'Hero форма - Запрос образцов');
+      const result = await window.formHandler.sendForm(formData, 'Hero форма - Запрос образцов', submitButton);
       
       if (result.success) {
-        showNotification(notification, 'Спасибо! Мы свяжемся с вами в течение 10 минут.', true);
+        showNotification(notification, result.message, true);
         form.reset();
       } else {
-        showNotification(notification, 'Произошла ошибка при отправке. Попробуйте еще раз.', false);
+        showNotification(notification, result.message, false);
       }
     });
   }
@@ -1810,14 +1892,15 @@ document.addEventListener("DOMContentLoaded", function() {
       
       if (!validateForm(form)) return;
       
+      const submitButton = form.querySelector('button[type="submit"]');
       const formData = addDefaultEmailToForm(new FormData(form));
-      const result = await window.formHandler.sendForm(formData, 'Основная контактная форма');
+      const result = await window.formHandler.sendForm(formData, 'Основная контактная форма', submitButton);
       
       if (result.success) {
         showNotification(notification, result.message, true);
         form.reset();
       } else {
-        showNotification(notification, 'Произошла ошибка при отправке. Попробуйте еще раз.', false);
+        showNotification(notification, result.message, false);
       }
     });
   }
@@ -1865,6 +1948,7 @@ document.addEventListener("DOMContentLoaded", function() {
       
       if (!validateForm(form)) return;
       
+      const submitButton = form.querySelector('button[type="submit"]');
       const formData = addDefaultEmailToForm(new FormData(form));
       
       // Заполняем пустые поля значениями по умолчанию для совместимости с emailJS
@@ -1875,7 +1959,7 @@ document.addEventListener("DOMContentLoaded", function() {
       const sourceBtn = document.querySelector('.request-price-btn[data-source-id]');
       const sourceId = sourceBtn ? sourceBtn.getAttribute('data-source-id') : 'Модальное окно запроса цен';
       
-      const result = await window.formHandler.sendForm(formData, sourceId);
+      const result = await window.formHandler.sendForm(formData, sourceId, submitButton);
       
       closeModal();
       
@@ -1885,6 +1969,21 @@ document.addEventListener("DOMContentLoaded", function() {
           notification.classList.add('hidden');
         }, 5000);
         form.reset();
+      } else {
+        // Show error notification
+        const errorNotification = document.createElement('div');
+        errorNotification.className = 'fixed top-4 right-4 bg-red-100 border border-red-400 text-red-700 px-6 py-4 rounded z-50';
+        errorNotification.innerHTML = `
+          <div class="flex items-center">
+            <i class="ri-error-warning-line text-xl mr-2"></i>
+            <span>${result.message}</span>
+          </div>
+        `;
+        document.body.appendChild(errorNotification);
+        
+        setTimeout(() => {
+          document.body.removeChild(errorNotification);
+        }, 5000);
       }
       
       // Clear source ID
@@ -2015,6 +2114,7 @@ document.addEventListener("DOMContentLoaded", function() {
     form.addEventListener('submit', async function(e) {
       e.preventDefault();
       
+      const submitButton = form.querySelector('button[type="submit"]');
       const formData = addDefaultEmailToForm(new FormData(form));
       
       // Add default values for missing fields
@@ -2022,7 +2122,7 @@ document.addEventListener("DOMContentLoaded", function() {
       if (!formData.get('volume')) formData.set('volume', 'Не указан');
       if (!formData.get('comment')) formData.set('comment', 'Запрос консультации и КП (Exit Intent)');
       
-      const result = await window.formHandler.sendForm(formData, 'Exit Intent - Запрос консультации');
+      const result = await window.formHandler.sendForm(formData, 'Exit Intent - Запрос консультации', submitButton);
       
       closePopup();
       
@@ -2033,7 +2133,7 @@ document.addEventListener("DOMContentLoaded", function() {
         notification.innerHTML = `
           <div class="flex items-center">
             <i class="ri-check-circle-line text-xl mr-2"></i>
-            <span>Спасибо! Мы свяжемся с вами и проконсультируем по всем вопросам.</span>
+            <span>${result.message}</span>
           </div>
         `;
         document.body.appendChild(notification);
@@ -2043,6 +2143,21 @@ document.addEventListener("DOMContentLoaded", function() {
         }, 5000);
         
         form.reset();
+      } else {
+        // Show error notification
+        const errorNotification = document.createElement('div');
+        errorNotification.className = 'fixed top-4 right-4 bg-red-100 border border-red-400 text-red-700 px-6 py-4 rounded z-50';
+        errorNotification.innerHTML = `
+          <div class="flex items-center">
+            <i class="ri-error-warning-line text-xl mr-2"></i>
+            <span>${result.message}</span>
+          </div>
+        `;
+        document.body.appendChild(errorNotification);
+        
+        setTimeout(() => {
+          document.body.removeChild(errorNotification);
+        }, 5000);
       }
     });
   }
